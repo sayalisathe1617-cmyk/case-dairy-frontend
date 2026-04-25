@@ -178,11 +178,6 @@ class _AddClientPageState extends State<AddClientPage> {
                             child: TextField(
                               controller: clientId,
                               keyboardType: TextInputType.number,
-                              onChanged: (val) {
-                                if (isEditMode) {
-                                  fetchClientById();
-                                }
-                              },
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                               ),
@@ -190,6 +185,13 @@ class _AddClientPageState extends State<AddClientPage> {
                           ),
                         ],
                       ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    ElevatedButton(
+                      onPressed: fetchClientById,
+                      child: const Text("Fetch Client"),
                     ),
 
                     Row(
@@ -253,7 +255,7 @@ class _AddClientPageState extends State<AddClientPage> {
                         actionButton("Edit", () {
                           setState(() {
                             isEditMode = true;
-                            message = "Enter Client ID";
+                            message = "Enter Client ID & click Fetch";
                             clientId.clear();
                           });
                         }),
